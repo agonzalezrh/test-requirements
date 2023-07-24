@@ -1,9 +1,14 @@
 - name: Test
   hosts: localhost
   tasks:
+    - name: debug_read_collections_path
+      ansible.builtin.debug:
+        msg: "{{ lookup('config', 'COLLECTIONS_PATHS') }}"
+      run_once: true
+      register: reg_debug_read_collections_path
     - command: ansible-galaxy collection install -r configs/a/requirements.yaml
 
 - name: Test2
-  localhost:
+  hosts: localhost
   tasks:
     - include_tasks: configs/a/main.yaml
