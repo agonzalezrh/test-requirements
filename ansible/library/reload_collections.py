@@ -4,7 +4,17 @@
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 from ansible.module_utils.basic import AnsibleModule
-from ansible.utils.collection_loader import AnsibleCollectionRef
+from ansible.utils.collection_loader._collection_finder import _AnsibleCollectionFinder, _get_collection_metadata
+finder = _AnsibleCollectionFinder("/home/runner/.ansible/collections")
+finder._install()
+
+import ansible.module_utils.common.yaml
+import ansible.module_utils.compat.typing
+import ansible.module_utils.compat.importlib
+import ansible.module_utils.common.json
+from ansible.plugins.loader import add_all_plugin_dirs, init_plugin_loader
+
+
 __metaclass__ = type
 
 DOCUMENTATION = r'''
