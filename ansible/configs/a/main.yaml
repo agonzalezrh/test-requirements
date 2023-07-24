@@ -1,3 +1,2 @@
-- kubernetes.kubevirt:
+- kubernetes.kubevirt.kubevirt_vm:
     name: "test"
-
