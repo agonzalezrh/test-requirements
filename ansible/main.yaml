@@ -1,5 +1,5 @@
 - name: Test
   hosts: localhost
   tasks:
-    - kubernetes.kubevirt:
-        name: "test"
+    - command: ansible-galaxy install -r configs/a/requirements.yaml
+    - include_tasks: configs/a/main.yaml
