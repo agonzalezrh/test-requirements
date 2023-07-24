@@ -10,5 +10,7 @@
 
 - name: Test2
   hosts: localhost
+  collections:
+    - kubernetes.kubevirt
   tasks:
     - include_tasks: configs/a/main.yaml
