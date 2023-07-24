@@ -6,7 +6,7 @@
         msg: "{{ lookup('config', 'COLLECTIONS_PATHS') }}"
       run_once: true
       register: reg_debug_read_collections_path
-    - command: ansible-galaxy collection install -r configs/a/requirements.yaml
+    - command: ansible-galaxy collection install -r configs/a/requirements.yaml -p /home/runner/.ansible/collections
 
 - name: Test2
   hosts: localhost
