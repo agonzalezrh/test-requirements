@@ -1,5 +1,5 @@
 - name: Test
   hosts: localhost
   tasks:
-    - command: ansible-galaxy install -r configs/a/requirements.yaml
+    - command: ansible-galaxy collection install -r configs/a/requirements.yaml
     - include_tasks: configs/a/main.yaml
