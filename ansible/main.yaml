@@ -1,12 +1,18 @@
 - name: Test
   hosts: localhost
+  gather_facts: False
   tasks:
+    - reload_collections:
+        name: "eps"
     - name: debug_read_collections_path
       ansible.builtin.debug:
         msg: "{{ lookup('config', 'COLLECTIONS_PATHS') }}"
       run_once: true
       register: reg_debug_read_collections_path
-    - command: ansible-galaxy collection install -r configs/a/requirements.yaml -p /home/runner/.ansible/collections
+
+    - command: ansible-galaxy collection install containers.podman
+
+    - include_tasks: configs/b/main.yaml
 
 - name: Test2
   hosts: localhost
