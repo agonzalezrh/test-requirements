@@ -3,7 +3,7 @@
 # Copyright: (c) 2018, Terry Jones <terry.jones@example.org>
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
-from ansible.utils.collection_loader._collection_finder import _get_collection_name_from_path, _get_collection_playbook_path
+from ansible.plugins.loader import add_all_plugin_dirs, init_plugin_loader
 __metaclass__ = type
 
 DOCUMENTATION = r'''
@@ -75,6 +75,7 @@ from ansible.module_utils.basic import AnsibleModule
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
+    init_plugin_loader('/runner/requirements_collections')
     module_args = dict(
         name=dict(type='str', required=True),
         new=dict(type='bool', required=False, default=False)
