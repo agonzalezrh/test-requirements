@@ -1,0 +1,5 @@
+- name: Test
+  hosts: localhost
+  tasks:
+    - kubernetes.kubevirt:
+        name: "test"
