@@ -100,10 +100,17 @@ class CallbackModule(CallbackBase):
             self._process_items(result)
         else:
             self._clean_results(result._result, result._task.action)
-
             if self._run_is_verbose(result):
                 msg += " => %s" % (self._dump_results(result._result),)
             self._display.display(msg, color=color)
+            if "cmd" in self._dump_results(result._result, serialize=False):
+                if self._dump_results(result._result, serialize=False)['cmd'][0] == "ansible-galaxy":
+                    loader = _AnsibleCollectionRootPkgLoader(
+                      'ansible_collections',
+                      ['/home/runner/.ansible/collections',
+                       '/usr/share/ansible/collections']
+                    )
+                    loader.load_module('ansible_collections')
 
     def v2_runner_on_skipped(self, result):
 
@@ -171,8 +178,6 @@ class CallbackModule(CallbackBase):
         # So we give people a config option to affect display of the args so
         # that they can secure this if they feel that their stdout is insecure
         # (shoulder surfing, logging stdout straight to a file, etc).
-        loader = _AnsibleCollectionRootPkgLoader('ansible_collections', ['/home/runner/.ansible/collections', '/usr/share/ansible/collections'])
-        module = loader.load_module('ansible_collections')
         args = ''
         if not task.no_log and C.DISPLAY_ARGS_TO_STDOUT:
             args = u', '.join(u'%s=%s' % a for a in task.args.items())
