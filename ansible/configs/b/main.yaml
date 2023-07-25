@@ -1,1 +1,1 @@
-- containers.podman.podman_container:
+- community.okd.k8s_auth:
