@@ -15,18 +15,11 @@ from ansible.utils.color import colorize, hostcolor
 
 
 class CallbackModule(CallbackBase):
-
-    '''
-    This is the default callback interface, which simply prints messages
-    to stdout when new callback events are received.
-    '''
-
-    CALLBACK_VERSION = 2.0
+    CALLBACK_VERSION = 0.1
     CALLBACK_TYPE = 'fix'
     CALLBACK_NAME = 'fix_collections'
 
     def __init__(self):
-
         super(CallbackModule, self).__init__()
 
     def v2_runner_on_ok(self, result):
