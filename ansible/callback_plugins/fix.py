@@ -8,10 +8,7 @@ __metaclass__ = type
 
 
 from ansible import constants as C
-from ansible import context
-from ansible.playbook.task_include import TaskInclude
 from ansible.plugins.callback import CallbackBase
-from ansible.utils.color import colorize, hostcolor
 
 
 class CallbackModule(CallbackBase):
