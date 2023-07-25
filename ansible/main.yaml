@@ -10,13 +10,9 @@
 
     - command: ansible-galaxy collection install containers.podman -p /home/runner/.ansible/collections
 
-    - reload_collections:
-        name: "eps"
-    - include_tasks: configs/b/main.yaml
-
 - name: Test2
   hosts: localhost
   collections:
     - kubernetes.kubevirt
   tasks:
-    - include_tasks: configs/a/main.yaml
+    - include_tasks: configs/b/main.yaml
