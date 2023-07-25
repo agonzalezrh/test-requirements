@@ -4,15 +4,13 @@
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 from ansible.module_utils.basic import AnsibleModule
-from ansible.utils.collection_loader._collection_finder import _AnsibleCollectionFinder, _get_collection_metadata
-finder = _AnsibleCollectionFinder("/home/runner/.ansible/collections")
-finder._install()
-
 import ansible.module_utils.common.yaml
 import ansible.module_utils.compat.typing
 import ansible.module_utils.compat.importlib
 import ansible.module_utils.common.json
-from ansible.plugins.loader import add_all_plugin_dirs, init_plugin_loader
+from ansible.plugins.loader import module_loader, action_loader
+import os, sys
+import importlib 
 
 
 __metaclass__ = type
@@ -90,6 +88,7 @@ def run_module():
         new=dict(type='bool', required=False, default=False)
     )
 
+
     # seed the result dict in the object
     # we primarily care about changed and state
     # changed is if this module effectively modified the target
@@ -119,7 +118,12 @@ def run_module():
     # manipulate or modify the state as needed (this is going to be the
     # part where your module will do what it needs to do)
     result['original_message'] = module.params['name']
-    result['message'] = 'goodbye'
+    result['message'] = sys.path.copy()
+    #sys.path.remove('/home/runner/.ansible/collections')
+#    sys.path.append('/home/runner/.ansible/collections')
+#    importlib.import_module('ansible_collections.containers.podman')
+#    importlib.invalidate_caches()
+
 
     # use whatever logic you need to determine whether or not this module
     # made any modifications to your target

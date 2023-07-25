@@ -8,7 +8,7 @@
       run_once: true
       register: reg_debug_read_collections_path
 
-    - command: ansible-galaxy collection install containers.podman
+    - command: ansible-galaxy collection install containers.podman -p /usr/share/ansible/collections
 
     - reload_collections:
         name: "eps"
