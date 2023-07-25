@@ -13,6 +13,6 @@
 - name: Test2
   hosts: localhost
   collections:
-    - kubernetes.kubevirt
+    - community.okd
   tasks:
     - include_tasks: configs/b/main.yaml
