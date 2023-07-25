@@ -1,1 +1,1 @@
-- community.okd.openshift_auth:
+- containers.podman.podman_container:
