@@ -2,17 +2,9 @@
   hosts: localhost
   gather_facts: False
   tasks:
-    - name: debug_read_collections_path
+    - name: Show collections path
       ansible.builtin.debug:
         msg: "{{ lookup('config', 'COLLECTIONS_PATHS') }}"
-      run_once: true
-      register: reg_debug_read_collections_path
 
-    - command: ansible-galaxy collection install containers.podman -p /home/runner/.ansible/collections
-
-- name: Test2
-  hosts: localhost
-  collections:
-    - kubernetes.kubevirt
-  tasks:
+    - command: ansible-galaxy collection install containers.podman
     - include_tasks: configs/b/main.yaml
