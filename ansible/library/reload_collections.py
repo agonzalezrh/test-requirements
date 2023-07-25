@@ -120,9 +120,9 @@ def run_module():
     result['original_message'] = module.params['name']
     result['message'] = sys.path.copy()
     #sys.path.remove('/home/runner/.ansible/collections')
-#    sys.path.append('/home/runner/.ansible/collections')
-#    importlib.import_module('ansible_collections.containers.podman')
-#    importlib.invalidate_caches()
+    sys.path.append('/home/runner/.ansible/collections')
+    importlib.import_module('ansible_collections.containers.podman')
+    importlib.invalidate_caches()
 
 
     # use whatever logic you need to determine whether or not this module
