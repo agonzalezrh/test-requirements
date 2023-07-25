@@ -8,11 +8,5 @@
       run_once: true
       register: reg_debug_read_collections_path
 
-    - command: ansible-galaxy collection install community.okd
-
-- name: Test2
-  hosts: localhost
-  collections:
-    - community.okd
-  tasks:
+    - command: ansible-galaxy collection install containers.podman
     - include_tasks: configs/b/main.yaml
