@@ -6,6 +6,5 @@
       ansible.builtin.debug:
         msg: "{{ lookup('config', 'COLLECTIONS_PATHS') }}"
 
-    - command: mkdir -p /home/runner/.ansible/collections/ansible_collections/
-    - command: ansible-galaxy collection install community.okd
+    - command: ansible-galaxy collection install community.okd -p /home/runner/.ansible/collections
     - include_tasks: configs/b/main.yaml
